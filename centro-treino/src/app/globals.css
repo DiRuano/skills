@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* Tema escuro é o padrão; a classe .claro no <html> troca para o claro. */
+:root {
+  /* Identidade Movimento Aplicado: verde #99cc40 e azul #054872.
+     Tema escuro (padrão) usa o azul da marca como base. */
+  --fundo: #071d31;
+  --superficie: #0b2a45;
+  --superficie-2: #103556;
+  --borda: #1d4a70;
+  --texto: #e8f0f6;
+  --texto-suave: #9fb4c6;
+  --primaria: #99cc40;        /* fundo de botões principais */
+  --primaria-texto: #05213a;  /* texto sobre o verde (contraste 8,6:1) */
+  --destaque: #99cc40;        /* verde como texto, contorno e foco */
+  --marca-azul: #054872;
+  --alerta: #fbbf24;
+  --perigo: #f87171;
+  --info: #7cb8f0;
+  /* Séries de gráfico (validadas para daltonismo e contraste na superfície) */
+  --serie-1: #4592da;
+  --serie-2: #78a62a;
+  --grade: #1d4a70;
+  color-scheme: dark;
+}
+:root.claro {
+  --fundo: #f4f7fa;
+  --superficie: #ffffff;
+  --superficie-2: #eef3f7;
+  --borda: #d3dde6;
+  --texto: #0b2135;
+  --texto-suave: #4d6478;
+  --primaria: #99cc40;
+  --primaria-texto: #05213a;
+  /* O verde da marca tem contraste baixo sobre branco (1,9:1); como texto usa-se um tom mais escuro */
+  --destaque: #4a7a12;
+  --marca-azul: #054872;
+  --alerta: #b45309;
+  --perigo: #dc2626;
+  --info: #054872;
+  --serie-1: #1f6fae;
+  --serie-2: #6f9e1f;
+  --grade: #e3e8ee;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-fundo: var(--fundo);
+  --color-superficie: var(--superficie);
+  --color-superficie-2: var(--superficie-2);
+  --color-borda: var(--borda);
+  --color-texto: var(--texto);
+  --color-suave: var(--texto-suave);
+  --color-primaria: var(--primaria);
+  --color-primaria-texto: var(--primaria-texto);
+  --color-destaque: var(--destaque);
+  --color-marca-azul: var(--marca-azul);
+  --color-alerta: var(--alerta);
+  --color-perigo: var(--perigo);
+  --color-info: var(--info);
+  --color-serie-1: var(--serie-1);
+  --color-serie-2: var(--serie-2);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html, body {
+  background: var(--fundo);
+  color: var(--texto);
+}
+body {
+  min-height: 100dvh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Logo: versão com azul da marca no tema claro; azul vira branco no escuro */
+.logo-claro { display: none; }
+:root.claro .logo-claro { display: block; }
+:root.claro .logo-escuro { display: none; }
