@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* Tema escuro é o padrão; a classe .claro no <html> troca para o claro. */
+:root {
+  --fundo: #0b0f14;
+  --superficie: #131a22;
+  --superficie-2: #1b2430;
+  --borda: #263241;
+  --texto: #e8edf2;
+  --texto-suave: #93a1b1;
+  --primaria: #34d399;
+  --primaria-texto: #052e1c;
+  --alerta: #fbbf24;
+  --perigo: #f87171;
+  --info: #60a5fa;
+  color-scheme: dark;
+}
+:root.claro {
+  --fundo: #f6f8fa;
+  --superficie: #ffffff;
+  --superficie-2: #eef2f6;
+  --borda: #d5dde6;
+  --texto: #0f1720;
+  --texto-suave: #4d5b6a;
+  --primaria: #059669;
+  --primaria-texto: #ffffff;
+  --alerta: #b45309;
+  --perigo: #dc2626;
+  --info: #2563eb;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-fundo: var(--fundo);
+  --color-superficie: var(--superficie);
+  --color-superficie-2: var(--superficie-2);
+  --color-borda: var(--borda);
+  --color-texto: var(--texto);
+  --color-suave: var(--texto-suave);
+  --color-primaria: var(--primaria);
+  --color-primaria-texto: var(--primaria-texto);
+  --color-alerta: var(--alerta);
+  --color-perigo: var(--perigo);
+  --color-info: var(--info);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html, body {
+  background: var(--fundo);
+  color: var(--texto);
+}
+body {
+  min-height: 100dvh;
+  -webkit-tap-highlight-color: transparent;
+}
