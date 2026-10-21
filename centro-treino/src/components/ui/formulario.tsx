@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 const base =
   "w-full rounded-xl border border-borda bg-superficie-2 px-4 text-base text-texto placeholder:text-suave " +
-  "focus:outline-2 focus:outline-primaria aria-[invalid=true]:border-perigo";
+  "focus:outline-2 focus:outline-destaque aria-[invalid=true]:border-perigo";
 
 export const Entrada = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>(
   ({ className, ...props }, ref) => <input ref={ref} className={cn(base, "min-h-12", className)} {...props} />,

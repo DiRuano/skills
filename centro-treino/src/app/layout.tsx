@@ -2,14 +2,14 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: process.env.NEXT_PUBLIC_NOME_CENTRO ?? "Centro de Treinamento",
-  description: "Avaliação física, treino e acompanhamento de jovens atletas",
+  title: process.env.NEXT_PUBLIC_NOME_CENTRO ?? "Movimento Aplicado",
+  description: "Movimento Aplicado — centro de treinamento infantojuvenil: avaliação física, treino e acompanhamento",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0b0f14",
+  themeColor: "#071d31",
 };
 
 // Aplica o tema salvo antes da pintura, evitando "piscar" o tema errado

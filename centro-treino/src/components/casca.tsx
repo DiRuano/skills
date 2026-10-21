@@ -2,6 +2,7 @@ import Link from "next/link";
 import { LogOut } from "lucide-react";
 import type { ReactNode } from "react";
 import { AlternarTema } from "./alternar-tema";
+import { Logo } from "./marca";
 import { sair } from "@/app/entrar/acoes";
 
 export type ItemMenu = { href: string; rotulo: string };
@@ -11,8 +12,8 @@ export function Casca({ nome, menu, children }: { nome: string; menu: ItemMenu[]
   return (
     <div className="mx-auto min-h-dvh max-w-5xl px-4 pb-16">
       <header className="flex items-center justify-between gap-2 py-4">
-        <Link href="/" className="truncate font-bold">
-          {process.env.NEXT_PUBLIC_NOME_CENTRO ?? "Centro de Treinamento"}
+        <Link href="/" aria-label="Início">
+          <Logo className="h-9" />
         </Link>
         <div className="flex items-center gap-1">
           <span className="hidden text-sm text-suave sm:inline">{nome}</span>

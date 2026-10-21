@@ -1,3 +1,4 @@
+import path from "node:path";
 import { Document, Image, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { ResumoAvaliacao } from "../avaliacao";
 import { formatarData } from "../idade";
@@ -9,14 +10,16 @@ import { descreverPercentil, type Comparacao } from "../ciencia/referencia";
  * fonte de cada comparação e referências no rodapé.
  */
 
-const COR = process.env.CENTRO_COR || "#059669";
-const NOME = process.env.NEXT_PUBLIC_NOME_CENTRO || "Centro de Treinamento";
-const LOGO = process.env.CENTRO_LOGO_URL || null;
+// Identidade Movimento Aplicado: azul #054872 (títulos, barras) e verde #99cc40 (filete do topo)
+const COR = process.env.CENTRO_COR || "#054872";
+const VERDE = "#99cc40";
+const NOME = process.env.NEXT_PUBLIC_NOME_CENTRO || "Movimento Aplicado";
+const LOGO = process.env.CENTRO_LOGO_URL || path.join(process.cwd(), "public/marca/logo.png");
 
 const s = StyleSheet.create({
   pagina: { padding: 36, paddingBottom: 64, fontSize: 10, fontFamily: "Helvetica", color: "#1f2933" },
-  topo: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", borderBottom: `2pt solid ${COR}`, paddingBottom: 8, marginBottom: 14 },
-  centro: { fontSize: 14, fontFamily: "Helvetica-Bold", color: COR },
+  topo: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", borderBottom: `3pt solid ${VERDE}`, paddingBottom: 8, marginBottom: 14 },
+  centro: { fontSize: 9, color: "#52606d", letterSpacing: 1.5, textTransform: "uppercase" },
   titulo: { fontSize: 18, fontFamily: "Helvetica-Bold", marginBottom: 2 },
   sub: { color: "#52606d", marginBottom: 12 },
   secao: { fontSize: 12, fontFamily: "Helvetica-Bold", marginTop: 14, marginBottom: 6, color: COR },
@@ -56,9 +59,9 @@ export function RelatorioPdf({ r }: { r: ResumoAvaliacao }) {
     <Document title={`Avaliação — ${aluno.nome}`} author={NOME} language="pt-BR">
       <Page size="A4" style={s.pagina}>
         <View style={s.topo} fixed>
-          <Text style={s.centro}>{NOME}</Text>
           {/* eslint-disable-next-line jsx-a11y/alt-text */}
-          {LOGO && <Image src={LOGO} style={{ height: 28 }} />}
+          <Image src={LOGO} style={{ height: 34 }} />
+          <Text style={s.centro}>Avaliação física</Text>
         </View>
 
         <Text style={s.titulo}>Relatório de avaliação física</Text>

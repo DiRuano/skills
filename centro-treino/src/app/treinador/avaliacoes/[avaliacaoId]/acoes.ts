@@ -40,7 +40,7 @@ export async function enviarAosResponsaveis(avaliacaoId: string, _: EstadoEnvio)
   }
 
   const pdf = await gerarRelatorioPdf(resumo);
-  const nomeCentro = process.env.NEXT_PUBLIC_NOME_CENTRO ?? "Centro de Treinamento";
+  const nomeCentro = process.env.NEXT_PUBLIC_NOME_CENTRO ?? "Movimento Aplicado";
   const link = `${process.env.NEXT_PUBLIC_APP_URL}/responsavel/avaliacoes/${avaliacaoId}`;
   const falhas: string[] = [];
   for (const d of destinos) {

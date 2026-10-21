@@ -14,7 +14,7 @@ export function Selo({
 }) {
   const tons = {
     neutro: "bg-superficie-2 text-suave",
-    sucesso: "bg-primaria/15 text-primaria",
+    sucesso: "bg-primaria/15 text-destaque",
     alerta: "bg-alerta/15 text-alerta",
     perigo: "bg-perigo/15 text-perigo",
     info: "bg-info/15 text-info",
@@ -39,7 +39,7 @@ export function Aviso({
     info: "border-info/40 bg-info/10",
     alerta: "border-alerta/40 bg-alerta/10",
     perigo: "border-perigo/40 bg-perigo/10",
-    sucesso: "border-primaria/40 bg-primaria/10",
+    sucesso: "border-destaque/40 bg-primaria/10",
   };
   return (
     <div className={cn("rounded-xl border p-4 text-sm", tons[tom])} role={tom === "perigo" ? "alert" : "status"}>

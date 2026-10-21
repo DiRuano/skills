@@ -109,7 +109,7 @@ export default async function FichaAluno({
             href={`?aba=${a.id}`}
             className={cn(
               "shrink-0 border-b-2 px-3 py-3 text-sm font-medium",
-              aba === a.id ? "border-primaria text-texto" : "border-transparent text-suave",
+              aba === a.id ? "border-destaque text-texto" : "border-transparent text-suave",
             )}
           >
             {a.rotulo}

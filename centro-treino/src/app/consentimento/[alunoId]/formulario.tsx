@@ -37,8 +37,8 @@ export function FormularioConsentimento({
       ))}
 
       {/* 1. Consentimento específico e destacado (art. 14, §1º) */}
-      <Cartao className="space-y-3 border-primaria/50">
-        <p className="text-xs font-semibold tracking-wide text-primaria uppercase">Obrigatório</p>
+      <Cartao className="space-y-3 border-destaque/50">
+        <p className="text-xs font-semibold tracking-wide text-destaque uppercase">Obrigatório</p>
         <h2 className="text-lg font-semibold">{termos.dados_menor.titulo}</h2>
         <TextoTermo termo={termos.dados_menor} />
         <label className="flex items-start gap-3 rounded-xl bg-superficie-2 p-3">
