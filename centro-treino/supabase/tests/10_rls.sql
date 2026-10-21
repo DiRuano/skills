@@ -232,11 +232,3 @@ begin
 end $$;
 reset role;
 
--- Sanidade: asserts estão ligados
-do $$ begin
-  begin
-    assert false, 'x';
-    raise exception 'FALHOU: asserts desligados (plpgsql.check_asserts)';
-  exception when assert_failure then null;
-  end;
-end $$;

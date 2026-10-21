@@ -10,10 +10,11 @@ import { Aviso, Cartao, Selo } from "@/components/ui/cartao";
 import { Botao, classeBotao } from "@/components/ui/botao";
 import { FormConviteAluno, FormEdicao, FormFoto, FormSaude } from "./formularios";
 import { reenviarConvite } from "./acoes";
+import { AbaAvaliacoes } from "./aba-avaliacoes";
 
 const ABAS = [
   { id: "dados", rotulo: "Dados" },
-  { id: "avaliacoes", rotulo: "Avaliações", fase: 2 },
+  { id: "avaliacoes", rotulo: "Avaliações" },
   { id: "treino", rotulo: "Treino", fase: 3 },
   { id: "carga", rotulo: "Carga", fase: 4 },
   { id: "financeiro", rotulo: "Financeiro", fase: 5 },
@@ -116,7 +117,9 @@ export default async function FichaAluno({
         ))}
       </nav>
 
-      {aba !== "dados" ? (
+      {aba === "avaliacoes" ? (
+        <AbaAvaliacoes alunoId={id} liberado={dadosOk} />
+      ) : aba !== "dados" ? (
         <Aviso titulo="Em construção">
           Esta seção chega na Fase {faseDaAba(aba)}.
           {!dadosOk && " Ela só será liberada depois do consentimento do responsável."}

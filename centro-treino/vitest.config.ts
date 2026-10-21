@@ -9,5 +9,7 @@ export default defineConfig({
       "server-only": path.resolve(__dirname, "src/test/vazio.ts"),
     },
   },
+  // JSX automático (como no Next), para renderizar o PDF nos testes
+  esbuild: { jsx: "automatic" },
   test: { environment: "node", include: ["src/**/*.test.ts"] },
 });

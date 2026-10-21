@@ -17,7 +17,7 @@ export async function GET(_: Request, { params }: { params: Promise<{ alunoId: s
   if (!auth) return NextResponse.json({ erro: "Sem permissão" }, { status: 403 });
 
   const admin = clienteAdmin();
-  const [aluno, saude, vinculos, consentimentos] = await Promise.all([
+  const [aluno, saude, vinculos, consentimentos, familia, avaliacoes] = await Promise.all([
     admin.from("alunos").select("*").eq("id", alunoId).single(),
     admin.from("alunos_saude").select("*").eq("aluno_id", alunoId).maybeSingle(),
     admin.from("responsaveis_alunos").select("parentesco, principal, criado_em, perfis(nome, email, telefone)").eq("aluno_id", alunoId),
@@ -26,6 +26,12 @@ export async function GET(_: Request, { params }: { params: Promise<{ alunoId: s
       .select("concedido, qualidade, ip, user_agent, registrado_em, termos(tipo, versao, hash_conteudo)")
       .eq("aluno_id", alunoId)
       .order("registrado_em"),
+    admin.from("alunos_familia").select("estatura_mae_cm, estatura_pai_cm, autorrelatada").eq("aluno_id", alunoId).maybeSingle(),
+    admin
+      .from("avaliacoes")
+      .select("data, massa_kg, estatura_cm, altura_sentado_cm, envergadura_cm, observacoes, publicada_em, resultados_testes(lado, tentativas, valor, criterios, testes(nome, unidade))")
+      .eq("aluno_id", alunoId)
+      .order("data"),
   ]);
 
   // Registra a exportação no log de acesso a dados sensíveis
@@ -51,7 +57,9 @@ export async function GET(_: Request, { params }: { params: Promise<{ alunoId: s
       : null,
     responsaveis: vinculos.data,
     consentimentos: consentimentos.data,
-    // Avaliações, treinos e pagamentos entram aqui nas próximas fases
+    estatura_pais: familia.data,
+    avaliacoes: avaliacoes.data,
+    // Treinos e pagamentos entram aqui nas próximas fases
   };
 
   return new NextResponse(JSON.stringify(corpo, null, 2), {

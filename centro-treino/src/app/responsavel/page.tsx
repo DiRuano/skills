@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { clienteServidor } from "@/lib/supabase/servidor";
-import { idadeAnos } from "@/lib/idade";
+import { formatarData, idadeAnos } from "@/lib/idade";
 import type { Aluno, ConsentimentoAtual } from "@/lib/tipos";
 import { Aviso, Cartao, Selo } from "@/components/ui/cartao";
 import { classeBotao } from "@/components/ui/botao";
@@ -9,9 +9,11 @@ export default async function AreaResponsavel({ searchParams }: { searchParams: 
   const { consentido } = await searchParams;
   const supabase = await clienteServidor();
   // A RLS já limita aos filhos vinculados a este responsável
-  const [{ data: filhos }, { data: consent }] = await Promise.all([
+  const [{ data: filhos }, { data: consent }, { data: avaliacoes }] = await Promise.all([
     supabase.from("alunos").select("*").order("nome"),
     supabase.from("consentimentos_atuais").select("*").eq("tipo", "dados_menor"),
+    // RLS: só as avaliações publicadas dos filhos
+    supabase.from("avaliacoes").select("id, aluno_id, data").order("data", { ascending: false }),
   ]);
   const valido = new Map((consent as ConsentimentoAtual[] | null)?.map((c) => [c.aluno_id, c]));
 
@@ -49,7 +51,25 @@ export default async function AreaResponsavel({ searchParams }: { searchParams: 
                   </>
                 )}
                 {!pendente && (
-                  <p className="text-sm text-suave">Relatórios de avaliação e assinatura aparecem aqui nas próximas fases.</p>
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium">Avaliações</p>
+                    {avaliacoes?.some((a) => a.aluno_id === f.id) ? (
+                      <ul className="space-y-1">
+                        {avaliacoes
+                          .filter((a) => a.aluno_id === f.id)
+                          .map((a) => (
+                            <li key={a.id}>
+                              <Link href={`/responsavel/avaliacoes/${a.id}`} className="flex items-center justify-between rounded-xl bg-superficie-2 px-4 py-3 text-sm">
+                                <span>Avaliação de {formatarData(a.data)}</span>
+                                <span className="text-suave">Ver relatório →</span>
+                              </Link>
+                            </li>
+                          ))}
+                      </ul>
+                    ) : (
+                      <p className="text-sm text-suave">Nenhum relatório publicado ainda.</p>
+                    )}
+                  </div>
                 )}
               </Cartao>
             </li>

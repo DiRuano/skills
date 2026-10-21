@@ -9,6 +9,9 @@ export default async function LayoutTreinador({ children }: { children: React.Re
       menu={[
         { href: "/treinador", rotulo: "Painel" },
         { href: "/treinador/alunos", rotulo: "Alunos" },
+        { href: "/treinador/testes", rotulo: "Testes" },
+        { href: "/treinador/referencias", rotulo: "Referências" },
+        { href: "/treinador/configuracoes", rotulo: "Configurações" },
         { href: "/treinador/solicitacoes", rotulo: "Solicitações LGPD" },
       ]}
     >

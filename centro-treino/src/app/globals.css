@@ -13,6 +13,10 @@
   --alerta: #fbbf24;
   --perigo: #f87171;
   --info: #60a5fa;
+  /* Séries de gráfico (validadas para daltonismo e contraste na superfície) */
+  --serie-1: #3987e5;
+  --serie-2: #d95926;
+  --grade: #263241;
   color-scheme: dark;
 }
 :root.claro {
@@ -27,6 +31,9 @@
   --alerta: #b45309;
   --perigo: #dc2626;
   --info: #2563eb;
+  --serie-1: #2a78d6;
+  --serie-2: #eb6834;
+  --grade: #e3e8ee;
   color-scheme: light;
 }
 
@@ -42,6 +49,8 @@
   --color-alerta: var(--alerta);
   --color-perigo: var(--perigo);
   --color-info: var(--info);
+  --color-serie-1: var(--serie-1);
+  --color-serie-2: var(--serie-2);
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 

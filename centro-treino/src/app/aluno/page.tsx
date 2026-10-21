@@ -4,6 +4,7 @@ import { idadeAnos } from "@/lib/idade";
 import type { Aluno } from "@/lib/tipos";
 import { Aviso } from "@/components/ui/cartao";
 import { classeBotao } from "@/components/ui/botao";
+import { MinhaEvolucao } from "./evolucao";
 
 export default async function AreaAluno() {
   const supabase = await clienteServidor();
@@ -34,8 +35,10 @@ export default async function AreaAluno() {
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">Oi, {primeiroNome}! 👋</h1>
       <Aviso titulo="Seus treinos vão aparecer aqui">
-        Em breve você vai ver o treino do dia, os vídeos dos exercícios e a sua evolução.
+        Em breve você vai ver o treino do dia e os vídeos dos exercícios.
       </Aviso>
+      <h2 className="pt-2 text-lg font-semibold">Minha evolução</h2>
+      <MinhaEvolucao alunoId={aluno.id} />
     </div>
   );
 }
